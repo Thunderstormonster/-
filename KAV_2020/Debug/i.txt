@@ -1,0 +1,57 @@
+В IT.cpp
+void SetI(IdTable& idtable, int indTI, int valu) {
+		int tempIn = valu;
+		if (tempIn > INT_MAX)
+			tempIn = INT_MAX;
+		else if (tempIn < INT_MINUS_MAXSIZE)
+			tempIn = INT_MINUS_MAXSIZE;
+		idtable.table[indTI].value.vNUM = tempIn;
+	}
+	int DecimalTrnsl(char* word) {
+		char* pEnd = 0;
+		char buf[15];
+		int l, j;
+		for (l = 1, j = 0; l < strlen(word); l++, j++) {
+			buf[j] = word[l];
+		}
+		buf[j + 1] = '\0';
+		return strtol(buf, &pEnd, 8);
+	}
+	int DecimalTrnsll(char* word) {
+		char* pEnd = 0;
+		char buf[15];
+		int l, j;
+		for (l = 1, j = 0; l < strlen(word); l++, j++) {
+			buf[j] = word[l];
+		}
+		buf[j + 1] = '\0';
+		return strtol(buf, &pEnd, 2);//для двоичного
+	}
+LexAnalize.cpp
+case LEX_VOS: // лексема литерала
+					{
+						if (Tables.Lextable.table[i - 1].lexema == LEX_EQUAL) // проверим предыдущие лексемы
+						{
+							int value = IT::DecimalTrnsl(InStruct.words[i].word);
+							IT::Entry entryit(LTRL, i, graph[j].graph.type, IT::L); // создание элемента табл ид с пометкой литерал
+							IT::Add(Tables.IDtable, entryit); //добавление в таблицу
+							IT::SetI(Tables.IDtable, Tables.IDtable.size - 1, value); // установление значения литерала
+							LT::Entry entrylt(graph[j].lexema, InStruct.words[i].line, Tables.IDtable.size - 1); // создание элемента ТЛ
+							LT::Add(Tables.Lextable, entrylt); // добавление элемента в ТЛ
+						}
+						break;
+					}
+					case LEX_DVO: // лексема литерала
+					{
+						if (Tables.Lextable.table[i - 1].lexema == LEX_EQUAL) // проверим предыдущие лексемы
+						{
+							int value = IT::DecimalTrnsll(InStruct.words[i].word);
+							IT::Entry entryit(LTRL, i, graph[j].graph.type, IT::L); // создание элемента табл ид с пометкой литерал
+							IT::Add(Tables.IDtable, entryit); //добавление в таблицу
+							IT::SetI(Tables.IDtable, Tables.IDtable.size - 1, value); // установление значения литерала
+							LT::Entry entrylt(graph[j].lexema, InStruct.words[i].line, Tables.IDtable.size - 1); // создание элемента ТЛ
+							LT::Add(Tables.Lextable, entrylt); // добавление элемента в ТЛ
+						}
+						break;
+					}
+Я ошибки не проверяла это выше моих сил))))0))0)

@@ -1,0 +1,57 @@
+int def MyFun(int a, int b)
+{
+let int c;
+c = 7*(a+b)-a/0;
+print(c);
+return c;
+}
+int def clear()
+{
+let int c;
+c = 10;
+return c;
+}
+
+string def Back(string str)
+{
+let string me;
+me = str;
+print(me);
+return str;
+}
+
+main
+{
+EMatLib;
+SLib;
+let int x;
+let int y;
+x = 2;
+y = 12;
+let char o;
+let int a;
+let int result;
+result = MyFun(x,y);
+y = power(5, x);
+print(y);
+let string v;
+v='no';
+let string n;
+n='yes';
+src(n,v);
+let int k;
+let int l;
+k = 9;
+l = 0;
+if(k > l){ print(n);}
+else{ print(v);}
+let int c;
+c = clear() + result + 1;
+print(c);
+let int q;
+q=Back('My language!');
+let int mm;
+mm = d100111;
+let int mml;
+mml = v17;
+}
